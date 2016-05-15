@@ -8,7 +8,11 @@
 <title>Insert title here</title>
 </head>
 <body>
+	敵のHP:<s:property value="EnemyHP" /><br>
+	自分のHP:<s:property value="PlayerHP" /><br>
+	<s:property value="COMMENT" /><br>
 	<s:form action="ATTACK" namespace="/">
+	<s:submit type="button" value="ATTACK"/>
 	</s:form>
 	<s:form action="RUN" namespace="/">
 	</s:form>

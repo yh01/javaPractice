@@ -9,18 +9,22 @@ import com.opensymphony.xwork2.ActionSupport;
 import rpgDao.TESTDAO;
 
 public class TESTACTION extends ActionSupport implements SessionAware{
-	private String TESTRESULT;
+	public String TESTRESULT;
+	public String TESTINT;
+	public Map<String,Object>session;
 	public String execute(){
 		TESTDAO dao = new TESTDAO();
-		TESTRESULT = dao.TESTMETHOD();
+		if(!session.containsKey("TESTRESULT")){
+			TESTRESULT = dao.TESTMETHOD(TESTINT);
+			session.put("TESTRESULT", TESTRESULT);
+		}else if(session.containsKey("TESTRESULT")){
+			TESTINT = (String) session.get("TESTRESULT");
+			TESTRESULT = dao.TESTMETHOD(TESTINT);
+			session.put("TESTRESULT", TESTRESULT);
+		}
 		return SUCCESS;
 	}
 
-	@Override
-	public void setSession(Map<String, Object> arg0) {
-		// TODO 自動生成されたメソッド・スタブ
-
-	}
 
 	public String getTESTRESULT() {
 		return TESTRESULT;
@@ -28,5 +32,14 @@ public class TESTACTION extends ActionSupport implements SessionAware{
 
 	public void setTESTRESULT(String tESTRESULT) {
 		TESTRESULT = tESTRESULT;
+	}
+
+
+	public Map<String, Object> getSession() {
+		return session;
+	}
+
+	public void setSession(Map<String, Object> session) {
+		this.session = session;
 	}
 }

@@ -7,5 +7,8 @@
 	<action name="TEST" class="rpgAction.TESTACTION" method="execute">
 		<result name="success">RPG.jsp</result>
 	</action>
+	<action name="ATTACK" class="rpgAction.AttackAction" method="execute">
+		<result name="success">RPG.jsp</result>
+	</action>
 </package>
 </struts>
